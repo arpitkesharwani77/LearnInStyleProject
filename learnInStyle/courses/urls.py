@@ -1,18 +1,19 @@
 from django.urls import path
-from .views import (
-    CourseListCreateView,
-    CourseRetrieveUpdateDestroyView,
-    EnrollmentListCreateView,
-    EnrollmentRetrieveUpdateDestroyView,
-    TokenObtainPairView,
-    TokenRefreshView,
-)
-
+from .views import (CourseListCreateView,
+                 CourseDetailView,
+                 EnrollmentListCreateView,
+                 EnrollmentDetailView,
+                 InstructorCourseListView,
+                 CourseSearchView,
+                 )
 urlpatterns = [
-    path('courses/', CourseListCreateView.as_view(), name='course-list-create'),
-    path('courses/<int:pk>/', CourseRetrieveUpdateDestroyView.as_view(), name='course-retrieve-update-destroy'),
-    path('enrollments/', EnrollmentListCreateView.as_view(), name='enrollment-list-create'),
-    path('enrollments/<int:pk>/', EnrollmentRetrieveUpdateDestroyView.as_view(), name='enrollment-retrieve-update-destroy'),
-    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('courses/', CourseListCreateView.as_view(), name='course-list'),
+    path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
+    path('enrollments/', EnrollmentListCreateView.as_view(), name='enrollment-list'),
+    
+    path('enrollments/<int:pk>/', EnrollmentDetailView.as_view(), name='enrollment-detail'),
+    path('instructor/courses/', InstructorCourseListView.as_view(), name='instructor-course-list'),
+     path('courses/search/', CourseSearchView.as_view(), name='course-search'),
 ]
+
+
